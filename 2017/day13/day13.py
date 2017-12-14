@@ -2,26 +2,50 @@
 
 firewall={}
 
+
 def getPos(length, time):
 	lst=range(length)+range(length-2, 0, -1)
 	return lst[time%len(lst)]
+def setsensors(firewall, time):
+	sensors=[None]*(max(map(int, firewall.keys()))+1)
+	for i in firewall:
+		sensors[int(i)]=getPos(firewall[i], time)
+	return sensors
+
+
 
 with open("input.txt", "r") as f:
 	for line in f:
 		lst=line.strip().split(": ")
 		firewall[lst[0]]=int(lst[1])
 	# print firewall
+
+
+
+	
+
+
 wait=0
 total=1
-while total!=0:
+caught=1
+while caught!=0:
+	# sensors=setsensors(firewall, wait)
+	# print sensors
 	total=0
+	caught=0
 	for step in range(max(map(int, firewall.keys()))+1):
+		
+		# sensors=setsensors(firewall, wait+step)
+		# print sensors
+		# print step
 		if str(step) in firewall:
+
 			if getPos(firewall[str(step)], wait+step)==0:
+				caught+=1
 				total+=step*firewall[str(step)]
-	# print total
+	# print total, "\n"
 	wait+=1
-print wait
+print wait-1
 
 
 # timeToWait=0
