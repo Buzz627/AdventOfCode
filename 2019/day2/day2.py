@@ -37,5 +37,6 @@ for i in range(100):
 			print(i, j)
 			print(100*i+j)
 			exit()
-			
-# print(compute(inputArr))
+c=Calculator([1,9,10,3,2,3,11,0,99,30,40,50])
+print(c.calculate())
+print(c.program)
