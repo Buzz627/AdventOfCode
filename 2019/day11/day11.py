@@ -48,7 +48,7 @@ while not c.finished:
 	
 
 print(len(set(positions)))
-picture=[["." for i in range(43)]for j in range(6)]
+picture=[[" " for i in range(43)]for j in range(6)]
 for panel in colors:
 	print(panel)
 	if colors[panel] == 1:

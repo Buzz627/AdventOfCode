@@ -195,9 +195,6 @@ class Calculator():
 
 			except KeyError as e:
 				print("dict error")
-				# print("e", e.args[0])
-				# print(type(e.args))
-				# break
 				self.addMemory(e.args[0])
 
 
