@@ -11,6 +11,18 @@ class Calculator():
 		self.base=base
 		self.convertToDict()
 		
+	def isFinished(self):
+		return self.finished
+
+	def isPaused(self):
+		return self.paused
+
+	def restart(self):
+		self.program=self.startingProgram
+		self.convertToDict()
+
+	def resume(self):
+		self.calculate()
 
 	def convertToDict(self):
 		d={}
@@ -139,6 +151,7 @@ class Calculator():
 
 
 	def calculate(self):
+		self.paused=False
 		self.line=0
 		while self.program[self.pos]!=99:
 			try:
@@ -178,11 +191,6 @@ class Calculator():
 					print("error")
 					print(op)
 					break
-			# except IndexError:
-			# 	print("memory error")
-			# 	break
-			# 	print("adding", len(self.program), "memory slots")
-			# 	self.addMemory(len(self.program))
 
 
 			except KeyError as e:
