@@ -1,5 +1,5 @@
 class Calculator():
-	def __init__(self, startingProgram, base=0):
+	def __init__(self, startingProgram, inputType="continuous", base=0):
 		self.startingProgram=startingProgram[::]
 		self.program=startingProgram[::]
 		self.pos=0
@@ -10,6 +10,7 @@ class Calculator():
 		self.output=0
 		self.base=base
 		self.convertToDict()
+		self.inputType=inputType
 		
 	def isFinished(self):
 		return self.finished
@@ -33,7 +34,10 @@ class Calculator():
 
 
 	def addInput(self, num):
-		self.inputs.append(num)
+		if self.inputType=="continuous":
+			self.inputs.append(num)
+		elif self.inputType=="raw":
+			self.input=num
 
 	def opCode(self, num):
 		op=num%100
@@ -86,8 +90,13 @@ class Calculator():
 	def op3(self, op):
 		a=self.pos+1
 		params=self.getParams(op, [a])
-		self.program[params[0]]=self.inputs[self.inputNum]
-		self.inputNum+=1
+		if self.inputType=="continuous":
+			self.program[params[0]]=self.inputs[self.inputNum]
+			self.inputNum+=1
+		elif self.inputType=="raw":
+			self.program[params[0]]=self.input
+		elif self.inputType=="manual":
+			self.program[params[0]]=int(input())
 		self.pos+=2
 		
 
