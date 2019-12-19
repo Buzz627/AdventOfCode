@@ -19,8 +19,7 @@ class Calculator():
 		return self.paused
 
 	def restart(self):
-		self.program=self.startingProgram
-		self.convertToDict()
+		self.__init__(self.startingProgram, self.inputType)
 
 	def resume(self):
 		self.calculate()
@@ -203,7 +202,7 @@ class Calculator():
 
 
 			except KeyError as e:
-				print("dict error")
+				# print("dict error")
 				self.addMemory(e.args[0])
 
 
