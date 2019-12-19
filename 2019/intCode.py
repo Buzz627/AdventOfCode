@@ -9,6 +9,7 @@ class Calculator():
 		self.finished=False
 		self.output=0
 		self.base=base
+		self.startingBase=base
 		self.convertToDict()
 		self.inputType=inputType
 		
@@ -19,7 +20,7 @@ class Calculator():
 		return self.paused
 
 	def restart(self):
-		self.__init__(self.startingProgram, self.inputType)
+		self.__init__(self.startingProgram, inputType=self.inputType, base=self.startingBase)
 
 	def resume(self):
 		self.calculate()
